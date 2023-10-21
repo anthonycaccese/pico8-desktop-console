@@ -64,7 +64,8 @@ boot/
 ```
 init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boot; source /boot/makepico8"
 ```
-8. Download the `makepico8` script from this repo and copy it to your `boot` partition.  Your folder structure should look like this afterwards:
+> This change sets up the first boot to call a script called makepico8 which will set up everything up.  You'll add that script in the next step.
+8. Download the `makepico8` script from this repo [here](https://raw.githubusercontent.com/anthonycaccese/pico8-desktop-console/main/makepico8) and copy it to your `boot` partition.  Your folder structure should look like this afterwards:
 > Note: There is a section below that outlines what the makepico8 script does to help answer any questions.
 ```
 boot/
@@ -110,4 +111,26 @@ network={
 ```
 11. *Optional but recommended*: If you want to be able to SSH into your device; create a filed called `ssh` (no extention) and add it to the `boot` partition.
 
-### What does `makepico8` do?
+### What does the `makepico8` script do?
+
+- It creates a new user called "pico8" and makes its home directory `/boot/pico-8`
+- It changes the permission on the "boot" partition in /etc/fstab, because in Linux, only Root would be allowed to write on VFAT-Partitions. This script changes that and gives permission to the "pico8" user and the "pico8" group.
+- It modifies systemd-files to allow the "pico8" user to autologin (so a keyboard is not needed).
+- It modifies /etc/sudoers to enable to the "pico8" user to trigger a device shutdown (so you can shutdown the device directly from Splore).
+- It sets values to reduce/remove console output during boot.
+
+This script only runs on first boot to essentially "make" a dedicated Pico-8 device (hence its name 😀) and on subsequent boots its not called again.  You can see that by checking how cmdline.txt is updated after your first boot.
+
+### First Boot
+
+- After you have completed the above steps you should be able to plug your SD card into your RaspeberryPi and turn it on.
+- On first boot the makepico8 script will conduct all the setup described above and when finished your raspberrypi should reboot directly into Pico-8 Splore.
+- At this point, if everything worked correctly, you will be able to navigate splore, download carts from the BBS (if you set up networking) and see your manually added carts in the file menu.  You should also be able to shutdown the device directly from splore.
+
+## Additional Questions
+
+TBA
+
+## Credits
+
+* Thank you to [Astorek86](https://github.com/Astorek86) for their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case
