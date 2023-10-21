@@ -8,7 +8,7 @@ In this repo are the changes I've made to that script while working on my own de
 
 ## Hardware
 
-Essentially I'll be building an all in one desktop console (screen and speakers included) similar in style/function to the classic Coleco tabletop arcade systems, Mac Classic or Vetrex. Something you can plug in, turn on and start playing without any fuss.
+Essentially I'll be building an all in one desktop console (screen and speakers included) similar in style/function to the classic Coleco tabletop arcade systems, Mac Classic or Vetrex. It will be dedicated to playing the awesome [Pico-8 fantasy console](https://www.lexaloffle.com/pico-8.php) and its amazing library of community developed games. Something you can turn on and start playing without any fuss.
 
 This is very much a work in progress 😊 so here is what I have so far...
 - `RaspberryPi Zero W:` you can use any RaspberryPi with this build. I just recommend that it has some way to access the internet as we'll be booting directly into Pico-8 Splore.
