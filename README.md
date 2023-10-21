@@ -142,3 +142,4 @@ This script only runs on first boot to essentially "make" a dedicated Pico-8 dev
 ## Credits
 
 Thank you to [Astorek86](https://github.com/Astorek86) for their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case
+Thank you to [NerdyTeachers](https://nerdyteachers.com/PICO-8/) for their tips on how to reduce boot times.
