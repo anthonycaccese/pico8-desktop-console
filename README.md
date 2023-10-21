@@ -95,7 +95,6 @@ hdmi_group=2
 hdmi_mode=87
 hdmi_timings=720 0 100 20 100 720 0 20 8 20 0 0 0 60 0 48000000 6
 start_x=0
-gpu_mem=128
 ```
 10. *Optional but recommended*: If you want wifi to be set up out of the box; Create a file called `wpa_supplicant.conf` with the following content and replace all values between `< >` with your own.  Add this file to the `boot` partition.
 ```
