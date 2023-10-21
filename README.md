@@ -133,4 +133,4 @@ TBA
 
 ## Credits
 
-* Thank you to [Astorek86](https://github.com/Astorek86) for their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case
+Thank you to [Astorek86](https://github.com/Astorek86) for their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case
