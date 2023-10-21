@@ -113,8 +113,8 @@ network={
 
 ### What does the `makepico8` script do?
 
-- It creates a new user called "pico8" and makes its home directory `/boot/pico-8`
-- It changes the permission on the "boot" partition in /etc/fstab, because in Linux, only Root would be allowed to write on VFAT-Partitions. This script changes that and gives permission to the "pico8" user and the "pico8" group.
+- It creates a new user called "pico8" and sets the home directory to `/boot/pico-8`
+- It changes the permission on the "boot" partition in /etc/fstab, because in Linux, only root is allowed to write on VFAT-Partitions. This script changes that and gives permission to the "pico8" user and the "pico8" group.
 - It modifies systemd-files to allow the "pico8" user to autologin (so a keyboard is not needed).
 - It modifies /etc/sudoers to enable to the "pico8" user to trigger a device shutdown (so you can shutdown the device directly from Splore).
 - It sets values to reduce/remove console output during boot.
