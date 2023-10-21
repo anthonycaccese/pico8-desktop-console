@@ -127,9 +127,18 @@ This script only runs on first boot to essentially "make" a dedicated Pico-8 dev
 - On first boot the makepico8 script will conduct all the setup described above and when finished your raspberrypi should reboot directly into Pico-8 Splore.
 - At this point, if everything worked correctly, you will be able to navigate splore, download carts from the BBS (if you set up networking) and see your manually added carts in the file menu.  You should also be able to shutdown the device directly from splore.
 
-## Additional Questions
+## Additional Notes
 
-TBA
+### Videos (In Progress)
+- Screen & Software Test: https://youtu.be/JKJjj8BBlpU
+- Paper Prototype: https://youtu.be/94ngQ8RXFYQ
+
+### Boot Time
+- First boot is the longest as it runs through the script to set things up. Subsequent boots take between 30 to 40 seconds from my testing so far.  There may be ways to shorten this further but its not so long that I am going to focus on it just yet (there are lots of more fun things to do first).
+
+### Getting rid of the password warning
+- Login over SSH with username `pi` / password `raspberry`
+- type `passwd` and follow the prompts
 
 ## Credits
 
