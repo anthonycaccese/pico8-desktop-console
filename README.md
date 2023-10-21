@@ -26,5 +26,88 @@ The primary aim for the software is to boot directly into Pico-8 Splore with as 
 
 ### Steps
 
-1. Download the lateset Raspbian Buster "Lite" from [RaspberryPi.org](https://downloads.raspberrypi.org/raspbian_lite_latest).  We're using the lite version specifically because we'll be booting into Splore directoy and won't need a desktop environment.
-2. Unzip and write that image to an SD card using your preferred image writing software (Win32DiskImager, Etcher, etc...) 
+1. Download the lateset Raspbian Buster "Lite" from [RaspberryPi.org](https://downloads.raspberrypi.org/raspbian_lite_latest).  We're using the lite version specifically because we'll be booting into Splore directly and won't need a desktop environment.
+2. Unzip and write the Raspbian Buster "Lite" image to an SD card using your preferred image writing software (Win32DiskImager, Etcher, etc...)
+4. After that's complete; plug the SD card back into your computer (you will need to make some changes on the `boot` partition before booting for the first time)
+5. Download PICO-8 for RaspberryPi from https://www.lexaloffle.com/games.php?page=updates
+6. Unzip the files from that archive to the `boot` partition of your SD card into a folder called `pico-8`.  Your folder structure should look like this afterwards:
+```
+boot/
+  ├─ pico-8/
+  │  ├─ license.txt
+  │  ├─ pico-8_manual.txt
+  │  ├─ pico8
+  │  ├─ pico8_64
+  │  ├─ pico8_dyn
+  │  ├─ pico8_gpio
+  │  ├─ pico8.dat
+  │  └─ readme_raspi.txt
+  └─ (other files from the boot directory such as config.txt and cmdline.txt)
+```
+6. *Optional but recommended*: Create a Folder named "carts" in the pico-8 directory you just made above and add some of your favourite cartridges in there. This will give you a direct list of games you can play in Splore when you don't have an internet connection.  Your folder structure should look like this afterwards:
+```
+boot/
+  ├─ pico-8/
+  │  ├─ carts/
+  │  │  └─ (add your downloaded carts in .png or .p8 format here)
+  │  ├─ license.txt
+  │  ├─ pico-8_manual.txt
+  │  ├─ pico8
+  │  ├─ pico8_64
+  │  ├─ pico8_dyn
+  │  ├─ pico8_gpio
+  │  ├─ pico8.dat
+  │  └─ readme_raspi.txt
+  └─ (other files from the boot directory such as config.txt and cmdline.txt)
+```
+7. Edit `cmdline.txt` and replace this specific text `init=/usr/lib/raspi-config/init_resize.sh` with the following:
+```
+init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boot; source /boot/makepico8"
+```
+8. Download the `makepico8` script from this repo and copy it to your `boot` partition.  Your folder structure should look like this afterwards:
+> Note: There is a section below that outlines what the makepico8 script does to help answer any questions.
+```
+boot/
+  ├─ pico-8/
+  │  ├─ carts/
+  │  │  └─ (add your downloaded carts in .png or .p8 format here)
+  │  ├─ license.txt
+  │  ├─ pico-8_manual.txt
+  │  ├─ pico8
+  │  ├─ pico8_64
+  │  ├─ pico8_dyn
+  │  ├─ pico8_gpio
+  │  ├─ pico8.dat
+  │  └─ readme_raspi.txt
+  ├─ makepico8
+  └─ (other files from the boot directory such as config.txt and cmdline.txt)
+```
+9. Edit `config.txt` and replace its contents with the following.
+> [!IMPORTANT]
+> You should only do this step if you are using the same 720x720 screen that I listed in the hardware section.  If you going to plug this into a regular monitor or tv you won't need to make this change to config.txt and you can skip this step.
+```
+[all]
+# 720x720 display config 
+hdmi_force_hotplug=1
+config_hdmi_boost=10
+hdmi_group=2
+hdmi_mode=87
+hdmi_timings=720 0 100 20 100 720 0 20 8 20 0 0 0 60 0 48000000 6
+start_x=0
+gpu_mem=128
+```
+10. *Optional but recommended*: If you want wifi to be set up of the box; Create a file called `wpa_supplicant.conf` with the following content and replace all values between `< >` with your own.  Add this file to the `boot` partition.
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=<Your Country-Code>
+
+network={
+  ssid="<Your SSID>"
+  psk="<Your Password>"
+  key_mgmt=WPA-PSK
+}
+```
+11. *Optional but recommended*: If you want to be able to SSH into your device; create a filed called `ssh` (no extention) and add it to the `boot` partition.
+
+### What does `makepico8` do?
