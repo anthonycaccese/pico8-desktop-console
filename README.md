@@ -2,7 +2,7 @@
 
 ![pico-8-paper-prototype](https://github.com/anthonycaccese/pico8-desktop-console/assets/1454947/4dd63356-214a-4558-97fe-020f0ad35769)
 
-The code in this repo heavily based on and inspired by the work of [Astorek86](https://github.com/Astorek86) who created a way to turn the GPi case + RaspberryPi Zero into a dedciated Pico-8 handheld. You can reference their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case.  All credit to them for their original work and a huge thank you as well ❤️
+The code in this repo heavily based on and inspired by the work of [Astorek86](https://github.com/Astorek86) who created a way to turn the GPi case + RaspberryPi Zero into a  dedicated Pico-8 handheld. You can reference their original work here: https://github.com/Astorek86/Pico8-Script-for-GPi-Case.  All credit to them for their original work and a huge thank you as well ❤️
 
 In this repo are the changes I've made to that script while working on my own dedicated Pico-8 Console.  My changes primarily remove all the aspects that were specific to the GPi case and adds elements that are specific to the version I am building (things like configuration for the square screen I will be using). 
 
