@@ -22,7 +22,6 @@ useradd -d /boot/pico-8 -M -g pico8 -G video,audio,input -s /bin/bash pico8
 
 # Set the hostname to "pico8desktop"
 echo "pico8desktop" > /etc/hostname
-sed -i 's/127\.0\.1\.1.*raspberry/127.0.1.1\tpico8desktop/g' /etc/hosts
 
 # Change /etc/fstab . Without root- or sudo-Permission, normal users aren't capable of writing vfat-Partition.
 # After these Changes, user "pico8" will be able to do so...
