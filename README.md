@@ -128,8 +128,39 @@ This script only runs on first boot to essentially "make" a dedicated Pico-8 dev
 
 ### Audio
 > [!IMPORTANT]
-> You should only follow these steps if you are using the same amp that I listed in the hardware section above.  These steps will only work with that specific amp.
-- Follow the steps outline here https://learn.adafruit.com/adafruit-speaker-bonnet-for-raspberry-pi/raspberry-pi-usage
+> You should only follow these steps if you are using the same amp that I listed in the hardware section above.  These steps will only work with that specific amp. The source for the steps are located here https://learn.adafruit.com/adafruit-speaker-bonnet-for-raspberry-pi/raspberry-pi-usage
+1. Add the following to config.txt
+```
+# adafruit speaker bonnet
+dtoverlay=hifiberry-dac
+dtoverlay=i2s-mmap
+```
+2. add an `asound.conf` file to /etc with the followig contents
+```
+pcm.speakerbonnet {
+   type hw card 0 
+}
+pcm.!default { 
+   type plug 
+   slave.pcm "dmixer" 
+}
+pcm.dmixer { 
+   type dmix 
+   ipc_key 1024
+   ipc_perm 0666
+   slave { 
+     pcm "speakerbonnet" 
+     period_time 0
+     period_size 1024
+     buffer_size 8192
+     rate 44100
+     channels 2 
+   } 
+}
+ctl.dmixer { 
+  type hw card 0 
+}
+```
 
 ## Additional Notes
 
