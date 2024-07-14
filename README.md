@@ -13,9 +13,9 @@ Essentially I'll be building an all in one desktop console (screen and speakers 
 This is very much a work in progress 😊 so here is what I have so far...
 - `RaspberryPi Zero W:` you can use any RaspberryPi with this build. I just recommend that it has some way to access the internet as we'll be booting directly into Pico-8 Splore.
 - `Screen:` Goal is to use a 1:1 aspect ratio screen to match Pico-8's native square aspect ratio.  I am using [this screen](https://a.aliexpress.com/_mtLhZdm) from AliExpress which is 4", 720x720 resolution and has a dedicated driver board with HDMI and power ports (making it super easy to set up)  This screen does require custom settings in /config.txt which I'll outline in the software section below.
+- `Audio:` I am using this [amp](https://www.adafruit.com/product/3346) and these [speakers](https://www.adafruit.com/product/1669) its super easy to set up and fits well with the rest of the boards I am using.  This does require you to have a raspberrypi with a header built in.  I've added the configuration for these speakers into the steps below if you plan to use the same.
 
 I am working on the following...
-- `Audio:` I have a few different approaches here that I want to experiment with.  As soon as I have hardware that I like; i'll add it to the list above.
 - `Case:` I created a quick "paper prototype" (cardboard really) to get a sense for the 3d model I'll create.  I'll start working on that model over the next few weeks.  When I have something I think will work i'll make sure to post the STLs as part of this repo.  For now you can check out my initial prototype in this video: https://youtu.be/94ngQ8RXFYQ?feature=shared
 - `Controls:` The case will include at least 2 usb ports to be able to plug in controllers (up to 2 players) or mouse and keyboard.
 - `Power:` To keep things simple i'll just be focusing on creating a unit that can be plugged into the wall so... no battery (but I could explore that if the first version works out well)
@@ -125,6 +125,11 @@ This script only runs on first boot to essentially "make" a dedicated Pico-8 dev
 - After you have completed the above steps you should be able to plug your SD card into your RaspeberryPi and turn it on.
 - On first boot the makepico8 script will conduct all the setup described above and when finished your raspberrypi should reboot directly into Pico-8 Splore.
 - At this point, if everything worked correctly, you will be able to navigate splore, download carts from the BBS (if you set up networking) and see your manually added carts in the file menu.  You should also be able to shutdown the device directly from splore.
+
+### Audio
+> [!IMPORTANT]
+> You should only follow these steps if you are using the same amp that I listed in the hardware section above.  These steps will only work with that specific amp.
+- Follow the steps outline here https://learn.adafruit.com/adafruit-speaker-bonnet-for-raspberry-pi/raspberry-pi-usage
 
 ## Additional Notes
 
