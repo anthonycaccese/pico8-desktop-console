@@ -20,6 +20,10 @@ touch /boot/pico-8/.hushlogin
 groupadd pico8
 useradd -d /boot/pico-8 -M -g pico8 -G video,audio,input -s /bin/bash pico8
 
+# Set the hostname to "pico8desktop"
+echo "pico8desktop" > /etc/hostname
+sed -i 's/127\.0\.1\.1.*raspberry/127.0.1.1\tpico8desktop/g' /etc/hosts
+
 # Change /etc/fstab . Without root- or sudo-Permission, normal users aren't capable of writing vfat-Partition.
 # After these Changes, user "pico8" will be able to do so...
 picouid=$(id -u pico8)
@@ -41,7 +45,7 @@ PS1=""
 pgrep pico8 || (cd ~; amixer sset 'PCM' 80% > /dev/null 2>&1; ./pico8 > /dev/null 2>&1 -home /boot/pico-8 -desktop /boot/pico-8/screenshots -splore; sudo /sbin/shutdown -h now)
 EOF
 
-# Allow pico9 user to shutdown
+# Allow pico8 user to shutdown
 cat >> /etc/sudoers << EOF
 pico8 ALL=(ALL) NOPASSWD: /sbin/shutdown
 EOF
